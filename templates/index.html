@@ -1,0 +1,71 @@
+<html> 
+<title> Lucas Series </title>
+<head>
+<link rel="stylesheet" type="text/css" href="/static/style.css">
+</head>
+
+<body class="bgclass">
+<div class="class1">
+<form id="lucas" method="get" action="http://ec2-52-37-54-12.us-west-2.compute.amazonaws.com/lucas/">
+<h1 align="center"> Enter the number of rows for lucas series </h1>
+<input type="number" name="num" id="nrows" required>
+<button type="submit"> Submit </button>
+</div>
+</form>
+
+<div>
+<form id = "form1" action="/api/time" method="get">
+    <h1 class="h1">American Time Zones to Indian Standard Time Converter</h1>
+   
+    <font class="text">Select American Time Zone:</font>
+      <select name="AmericanZone" id='AmericanZone'>
+        <option  value="EST">Eastern Standard Time</option>
+        <option  value="CST">Central Standard Time </option>
+        <option  value="MST">Mountain Standard Time</option>
+        <option  value="PST">Pacific Standard Time</option>
+      </select>
+    <br>
+    <br>
+    <font class="text"> Enter Time in American Zone:</font>
+      <input Type="time" Name="IST" id='IST' required>
+      <input Type="Submit">
+ </form>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script type='text/javascript'>
+$(document).ready(function() {
+  $("#lucas").submit(function(e){
+      e.preventDefault();
+      var $form = $( this ),
+          url = $form.attr( 'action' ) + $('#nrows').val(); 
+      var posting = $.get( url);
+      posting.done(function( data ) {
+        $("body").html('<html><head></head><body><span><h1 style="color:white">lucas series is' +data.lucas +'</h1></span></body></html>');
+});
+});
+});
+</script>
+<script type='text/javascript'>
+$(document).ready(function(){
+$( '#form1' ) .submit( function( e ){
+e.preventDefault();
+var ur = '/api/time';
+var az = document.getElementById("AmericanZone").value;
+var IST = document.getElementById("IST").value;
+$.ajax({
+url: ur,
+type: 'GET',
+data: "AmericanZone=" +az +  "&IST=" +IST,
+processData: false,
+contentType: false,
+success: function(data){
+$("body").html('<html><h1 style="color:white">The time in IST  is ' +data.result  +'</h1></html>');
+}
+});
+});
+});
+</script>
+</body>
+</html>

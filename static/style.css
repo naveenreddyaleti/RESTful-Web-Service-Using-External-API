@@ -1,0 +1,27 @@
+.bgclass
+{
+  background-image:url("http://www.planwallpaper.com/static/images/Light-Wood-Background-Wallpaper.jpg");
+}
+.class1
+{
+display:inline-block;
+background-color:white;
+text-align: center;
+padding:100px;
+margin:200px;
+margin-left:300px;
+border-radius:1em;
+}
+
+.class2
+{
+display:inline-block;
+background-color:#5F9EA0;
+color:white;
+text-align: center;
+padding:100px;
+margin:200px;
+margin-left:450;
+border-radius:1em;
+}
+
